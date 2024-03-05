@@ -472,3 +472,6 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/```
+
+# Carpeta datadb
+datadb/

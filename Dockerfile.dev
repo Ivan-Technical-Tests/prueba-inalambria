@@ -1,0 +1,14 @@
+# Utiliza la imagen base de ASP.NET Core en su versión más reciente
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+# Utiliza la imagen base de SDK de .NET en su versión más reciente para compilar y depurar la aplicación
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["api.csproj", "./"]
+RUN dotnet restore "api.csproj"
+COPY . .
+WORKDIR "/src"
+ENTRYPOINT ["dotnet", "watch", "run", "--urls", "http://0.0.0.0:80"]
